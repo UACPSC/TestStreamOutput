@@ -24,7 +24,7 @@ void process() {
 int main() {
 
     // save the original stream buffer of std::cerr
-    std::streambuf* originalCerrBuffer = std::cerr.rdbuf();
+    std::streambuf* originalStreamBuffer = std::cerr.rdbuf();
 
     // redirect std::cerr to a stringstream
     std::ostringstream errorCapture;
@@ -34,7 +34,7 @@ int main() {
     process();
 
     // restore the original buffer of std::cerr
-    std::cerr.rdbuf(originalCerrBuffer);
+    std::cerr.rdbuf(originalStreamBuffer);
 
     // test the error message
     assert(errorCapture.str() == "Error message\n");
